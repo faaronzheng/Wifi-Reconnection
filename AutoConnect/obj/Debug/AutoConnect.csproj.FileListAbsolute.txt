@@ -1,0 +1,21 @@
+c:\users\郑发\documents\visual studio 2012\Projects\AutoConnect\AutoConnect\bin\Debug\AutoConnect.exe.config
+c:\users\郑发\documents\visual studio 2012\Projects\AutoConnect\AutoConnect\bin\Debug\AutoConnect.exe
+c:\users\郑发\documents\visual studio 2012\Projects\AutoConnect\AutoConnect\bin\Debug\AutoConnect.pdb
+c:\users\郑发\documents\visual studio 2012\Projects\AutoConnect\AutoConnect\obj\Debug\AutoConnect.csprojResolveAssemblyReference.cache
+c:\users\郑发\documents\visual studio 2012\Projects\AutoConnect\AutoConnect\obj\Debug\AutoConnect.AutoConnect.resources
+c:\users\郑发\documents\visual studio 2012\Projects\AutoConnect\AutoConnect\obj\Debug\AutoConnect.Properties.Resources.resources
+c:\users\郑发\documents\visual studio 2012\Projects\AutoConnect\AutoConnect\obj\Debug\AutoConnect.csproj.GenerateResource.Cache
+c:\users\郑发\documents\visual studio 2012\Projects\AutoConnect\AutoConnect\obj\Debug\AutoConnect.exe
+c:\users\郑发\documents\visual studio 2012\Projects\AutoConnect\AutoConnect\obj\Debug\AutoConnect.pdb
+c:\users\郑发\documents\visual studio 2012\Projects\AutoConnect\AutoConnect\bin\Debug\managedwifi.dll
+C:\Users\郑发\documents\visual studio 2012\Projects\AutoConnect\AutoConnect\obj\Debug\AutoConnect.Setting.resources
+C:\Users\FaaronZheng\Desktop\faaron-wifi断网自动重连1.1\AutoConnect\bin\Debug\AutoConnect.exe.config
+C:\Users\FaaronZheng\Desktop\faaron-wifi断网自动重连1.1\AutoConnect\obj\Debug\AutoConnect.exe
+C:\Users\FaaronZheng\Desktop\faaron-wifi断网自动重连1.1\AutoConnect\obj\Debug\AutoConnect.pdb
+C:\Users\FaaronZheng\Desktop\faaron-wifi断网自动重连1.1\AutoConnect\bin\Debug\AutoConnect.exe
+C:\Users\FaaronZheng\Desktop\faaron-wifi断网自动重连1.1\AutoConnect\bin\Debug\AutoConnect.pdb
+C:\Users\FaaronZheng\Desktop\faaron-wifi断网自动重连1.1\AutoConnect\obj\Debug\AutoConnect.csprojResolveAssemblyReference.cache
+C:\Users\FaaronZheng\Desktop\faaron-wifi断网自动重连1.1\AutoConnect\obj\Debug\AutoConnect.AutoConnect.resources
+C:\Users\FaaronZheng\Desktop\faaron-wifi断网自动重连1.1\AutoConnect\obj\Debug\AutoConnect.Properties.Resources.resources
+C:\Users\FaaronZheng\Desktop\faaron-wifi断网自动重连1.1\AutoConnect\obj\Debug\AutoConnect.Setting.resources
+C:\Users\FaaronZheng\Desktop\faaron-wifi断网自动重连1.1\AutoConnect\obj\Debug\AutoConnect.csproj.GenerateResource.Cache

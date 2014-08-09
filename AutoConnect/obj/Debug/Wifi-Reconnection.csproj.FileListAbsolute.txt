@@ -1,0 +1,3 @@
+C:\Users\FaaronZheng\Desktop\faaron-wifi断网自动重连1.1\AutoConnect\bin\Debug\AutoConnect.exe.config
+C:\Users\FaaronZheng\Desktop\faaron-wifi断网自动重连1.1\AutoConnect\obj\Debug\AutoConnect.exe
+C:\Users\FaaronZheng\Desktop\faaron-wifi断网自动重连1.1\AutoConnect\obj\Debug\AutoConnect.pdb
