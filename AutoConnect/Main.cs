@@ -24,15 +24,16 @@ namespace AutoConnect
     {
         private Wifi wifi=null;                               
         private List<WIFISSID> wifiName = null;              //存储wifi名
-        private Boolean isSave = false;                      //是否需要保存到xml
-        private Thread monitor = null;                       
+     //   private Thread monitor = null;                       
         private Thread autoConnect = null;
-        private Thread watch = null;
-        private Thread shutDown = null;
+        private Thread monitor = null;
+     //   private Thread shutDown = null;
         private Boolean isThread = false;                    //是否存在线程
         private String authen = null;                        //认证方式
         private String encry = null;                         //加密方式
         private int time = 0;                                //断网超时关机时间
+        private WIFISSID targetSSID;
+      //  private Boolean isConnection = true;
        // private XmlDocument doc = null;
        // private XmlNode node = null;
        // private XmlElement elem = null;
@@ -41,6 +42,7 @@ namespace AutoConnect
             InitializeComponent();
             wifi = new Wifi();
             wifiName = new List<WIFISSID>();
+            targetSSID = new WIFISSID();
          //   doc = new XmlDocument();
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
         }
@@ -93,42 +95,76 @@ namespace AutoConnect
     
         }
 
+     //   public delegate Boolean isSuccess();                                             //声明委托
+
+    //    public void AsyncCallbackImpl(IAsyncResult ar)
+     //   {
+    //        isSuccess iss = ar.AsyncState as isSuccess;
+    //        isConnection= iss.EndInvoke(ar);        
+    //    }   
 
         private void AutoConnect_button_Click(object sender, EventArgs e)
         {
-            AutoConnect_button.Enabled = false;
-            if (WifiName_comboBox.Text != "" && WifiPswd_textBox.Text != "")            //合法输入判断
-            {         
-                WIFISSID targetSSID = new WIFISSID();
-                foreach (WIFISSID SSID in wifiName)
+            if (AutoConnect_button.Text == "自动重连")
+            {
+                AutoConnect_button.Text = "取消重连";
+                this.Refresh();
+                if (!WifiName_comboBox.Text.Equals(""))            //合法输入判断
                 {
-                    if (SSID.SSID.Equals(WifiName_comboBox.Text.ToString()))
+                    foreach (WIFISSID SSID in wifiName)
                     {
-                        targetSSID = SSID;
+                        if (SSID.SSID.Equals(WifiName_comboBox.Text.ToString()))
+                        {
+                            targetSSID = SSID;
+                            break;
+                        }
+                    }
+                    State state = new State(targetSSID, WifiPswd_textBox.Text.Trim().ToString(), authen, encry, time);
+                    //   isSuccess iss=new isSuccess(state.AutoConThread);
+                    //   AsyncCallback callback = new AsyncCallback(this.AsyncCallbackImpl);
+                    //    iss.BeginInvoke(callback, iss);
+                    autoConnect = new Thread(state.AutoConThread);
+                    autoConnect.IsBackground = true;                 //设置线程为后台进程
+                    //System.Environment.Exit(0); 也可以起到退出后程序完全关闭的效果
+                    autoConnect.Start();
+                    Thread.Sleep(3000);
+                    if (state.connectResult == false)
+                    {
+                        MessageBox.Show("连接失败！小提示：密码正确和设置正确才能连得上哦！");
+                    }
+
+                    monitor = new Thread(state.monitorThread);
+                    monitor.IsBackground = true;
+                    monitor.Start();
+                    isThread = true;
+                    // wifi.ConnectToSSID(targetSSID);
+                }
+                else
+                {
+                    if (WifiName_comboBox.Text.Equals(""))
+                    {
+                        MessageBox.Show("请选择wifi！");
+                        AutoConnect_button.Enabled = true;
                     }
                 }
-                State state = new State(targetSSID,WifiPswd_textBox.Text.Trim().ToString(),authen,encry,time);                                     
-                autoConnect = new Thread(()=>state.AutoConThread(isSave));
-                autoConnect.IsBackground = true;                 //设置线程为后台进程
-                //System.Environment.Exit(0); 也可以起到退出后程序完全关闭的效果
-                autoConnect.Start();
-                watch = new Thread(state.watchThread);
-                watch.IsBackground = true;
-                watch.Start();
-                isThread = true;
-               // wifi.ConnectToSSID(targetSSID);
+
             }
-            else                                             
+            else
             {
-                if (WifiName_comboBox.Text == "")
+                AutoConnect_button.Text = "自动重连";
+                this.Refresh();
+                if (isThread)
                 {
-                    MessageBox.Show("请选择wifi名！");
+                    AutoConnect_button.Enabled = true;
+                    //     monitor.Abort();
+                    autoConnect.Abort();
+                    monitor.Abort();
+                    //      shutDown.Abort();
+                    isThread = false;
                 }
-                if (WifiPswd_textBox.Text != "")
-                {
-                    MessageBox.Show("请输入密码！");
-                }
-            }
+ 
+            }        
+         
 
         }
 
@@ -137,10 +173,10 @@ namespace AutoConnect
             if (isThread)
             {
                 AutoConnect_button.Enabled = true;
-                monitor.Abort();
+           //     monitor.Abort();
                 autoConnect.Abort();
-                watch.Abort();
-                shutDown.Abort();
+                monitor.Abort();
+          //      shutDown.Abort();
                 isThread = false;
             }
             Form setting = new Setting();
@@ -165,20 +201,19 @@ namespace AutoConnect
 
         private void WifiName_comboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (WifiPswd_textBox.Text != "")
+            if (!WifiPswd_textBox.Text.Equals(""))
             {
                 WifiPswd_textBox.Text = "";
             }
             MethodInvoker mi = new MethodInvoker(showPswdThread);
-            BeginInvoke(mi);
-            isSave = true;        
+            BeginInvoke(mi);    
             if (isThread)
             {
                 AutoConnect_button.Enabled = true;
+       //         monitor.Abort();
+               autoConnect.Abort();
                 monitor.Abort();
-                autoConnect.Abort();
-                watch.Abort();
-                shutDown.Abort();
+      //          shutDown.Abort();
                 isThread = false;
             }
 
@@ -213,6 +248,26 @@ namespace AutoConnect
         private void 退出ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+
+        private void Crack_button_Click(object sender, EventArgs e)
+        {
+            if (WifiName_comboBox.Text.Equals(""))
+            {
+                MessageBox.Show("请先选择要破解的wifi名");
+                return;
+            }
+            foreach (WIFISSID SSID in wifiName)
+            {
+                if (SSID.SSID.Equals(WifiName_comboBox.Text.ToString()))
+                {
+                    targetSSID = SSID;
+                    break;
+                }
+            } 
+            Crack crack = new Crack(targetSSID,authen,encry);
+            crack.ShowDialog();
         }
     }
    

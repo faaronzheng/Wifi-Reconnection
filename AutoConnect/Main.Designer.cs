@@ -39,6 +39,7 @@
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.退出ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Crack_button = new System.Windows.Forms.Button();
             this.contextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -79,7 +80,7 @@
             // 
             // AutoConnect_button
             // 
-            this.AutoConnect_button.Location = new System.Drawing.Point(39, 101);
+            this.AutoConnect_button.Location = new System.Drawing.Point(52, 120);
             this.AutoConnect_button.Name = "AutoConnect_button";
             this.AutoConnect_button.Size = new System.Drawing.Size(75, 23);
             this.AutoConnect_button.TabIndex = 5;
@@ -89,7 +90,7 @@
             // 
             // Setting_button
             // 
-            this.Setting_button.Location = new System.Drawing.Point(147, 101);
+            this.Setting_button.Location = new System.Drawing.Point(188, 120);
             this.Setting_button.Name = "Setting_button";
             this.Setting_button.Size = new System.Drawing.Size(75, 23);
             this.Setting_button.TabIndex = 9;
@@ -110,20 +111,31 @@
             this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.退出ToolStripMenuItem});
             this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(153, 48);
+            this.contextMenuStrip.Size = new System.Drawing.Size(101, 26);
             // 
             // 退出ToolStripMenuItem
             // 
             this.退出ToolStripMenuItem.Name = "退出ToolStripMenuItem";
-            this.退出ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.退出ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
             this.退出ToolStripMenuItem.Text = "退出";
             this.退出ToolStripMenuItem.Click += new System.EventHandler(this.退出ToolStripMenuItem_Click);
+            // 
+            // Crack_button
+            // 
+            this.Crack_button.Location = new System.Drawing.Point(234, 56);
+            this.Crack_button.Name = "Crack_button";
+            this.Crack_button.Size = new System.Drawing.Size(75, 23);
+            this.Crack_button.TabIndex = 10;
+            this.Crack_button.Text = "暴力破解";
+            this.Crack_button.UseVisualStyleBackColor = true;
+            this.Crack_button.Click += new System.EventHandler(this.Crack_button_Click);
             // 
             // AutoConnect
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(274, 155);
+            this.ClientSize = new System.Drawing.Size(321, 191);
+            this.Controls.Add(this.Crack_button);
             this.Controls.Add(this.Setting_button);
             this.Controls.Add(this.AutoConnect_button);
             this.Controls.Add(this.WifiName_comboBox);
@@ -151,6 +163,7 @@
         private System.Windows.Forms.NotifyIcon notifyIcon;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem 退出ToolStripMenuItem;
+        private System.Windows.Forms.Button Crack_button;
     }
 }
 

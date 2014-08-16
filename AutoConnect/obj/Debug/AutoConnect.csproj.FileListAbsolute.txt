@@ -19,3 +19,14 @@ C:\Users\FaaronZheng\Desktop\faaron-wifi断网自动重连1.1\AutoConnect\obj\De
 C:\Users\FaaronZheng\Desktop\faaron-wifi断网自动重连1.1\AutoConnect\obj\Debug\AutoConnect.Properties.Resources.resources
 C:\Users\FaaronZheng\Desktop\faaron-wifi断网自动重连1.1\AutoConnect\obj\Debug\AutoConnect.Setting.resources
 C:\Users\FaaronZheng\Desktop\faaron-wifi断网自动重连1.1\AutoConnect\obj\Debug\AutoConnect.csproj.GenerateResource.Cache
+F:\GitHub\Wifi-Reconnection\AutoConnect\bin\Debug\AutoConnect.exe.config
+F:\GitHub\Wifi-Reconnection\AutoConnect\obj\Debug\AutoConnect.exe
+F:\GitHub\Wifi-Reconnection\AutoConnect\obj\Debug\AutoConnect.pdb
+F:\GitHub\Wifi-Reconnection\AutoConnect\bin\Debug\AutoConnect.exe
+F:\GitHub\Wifi-Reconnection\AutoConnect\bin\Debug\AutoConnect.pdb
+F:\GitHub\Wifi-Reconnection\AutoConnect\obj\Debug\AutoConnect.csprojResolveAssemblyReference.cache
+F:\GitHub\Wifi-Reconnection\AutoConnect\obj\Debug\AutoConnect.AutoConnect.resources
+F:\GitHub\Wifi-Reconnection\AutoConnect\obj\Debug\AutoConnect.Properties.Resources.resources
+F:\GitHub\Wifi-Reconnection\AutoConnect\obj\Debug\AutoConnect.Setting.resources
+F:\GitHub\Wifi-Reconnection\AutoConnect\obj\Debug\AutoConnect.csproj.GenerateResource.Cache
+F:\GitHub\Wifi-Reconnection\AutoConnect\obj\Debug\AutoConnect.Crack.resources

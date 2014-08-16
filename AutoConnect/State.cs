@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Threading;
+using System.Xml;
 /*
  * version: 1.1
  * author: faaron
@@ -12,20 +13,24 @@ namespace AutoConnect
     class State
     {
         private Wifi wifi = null;
-        private WIFISSID targetSSID = null;
         public Boolean AutoConFlag = false;                          //是否进行重连标志 
         public bool timeout = false;                                 //是否超时标志
         int time = 0;
         private Stopwatch sw = null;                                 //计时
+        private Boolean isAdded = false;
+        private WIFISSID targetSSID=null;
+        private String pswd=null;
+        public Boolean connectResult = true;
         //检测网络状态
         [DllImport("wininet.dll", EntryPoint = "InternetGetConnectedState")]
         public extern static bool InternetGetConnectedState(out int conState, int reder);
 
-        public State(WIFISSID SSID,string pswd,string authen,string encry,int time)
+        public State(WIFISSID SSID,String pswd,String authen,String encry,int time)
         {
-            wifi = new Wifi(SSID.SSID,pswd,authen,encry);
-            sw = new Stopwatch();
-            this.targetSSID = SSID;
+            targetSSID=SSID;
+            this.pswd=pswd;
+            wifi = new Wifi(SSID,pswd,authen,encry);
+            sw = new Stopwatch();         
             this.time = time*60000;
         }
         public State()
@@ -34,13 +39,30 @@ namespace AutoConnect
 
 
         #region  重连线程
-        public void AutoConThread(Boolean isSave)
+        public void AutoConThread()
         {
             int Desc = 0;
             while (true)
             {
                 if (InternetGetConnectedState(out Desc, 0))       //有网络连接               
-                {
+                {               
+                        XmlDocument doc = new XmlDocument();
+                        doc.Load("setting.xml");
+                        XmlNodeList nodeList = doc.SelectSingleNode("setting").ChildNodes;
+                        foreach (XmlNode xn in nodeList)
+                        {
+                            XmlElement xe = (XmlElement)xn;
+                            if (xe.GetAttribute("ssid").Equals(targetSSID.SSID))
+                            {
+                                isAdded = true;
+                            }
+                        }
+                        if (!isAdded)
+                        {
+                            XmlOP xml = new XmlOP();
+                            xml.addXml(targetSSID.SSID, pswd);
+                        }
+                    
                     sw.Reset();                //重置时间
                     continue;
                 }
@@ -52,13 +74,17 @@ namespace AutoConnect
                 }
                 if (AutoConFlag)
                 {
-                    wifi.ConnectToSSID(targetSSID, isSave);             //连接wifi
+                    Boolean result=wifi.ConnectToSSID();             //连接wifi
+                    if (result==false)
+                    {
+                        connectResult = result;
+                    }                
                     AutoConFlag = false;
                     Thread.Sleep(60000);
                 }
 
                 Thread.Sleep(10000);
-            }
+            }       
         }
         #endregion
 
@@ -86,7 +112,7 @@ namespace AutoConnect
 
 
         #region 断网关机线程
-        public void watchThread()                                        
+        public void monitorThread()                                        
         {
             while (true)
             {
@@ -105,8 +131,5 @@ namespace AutoConnect
         }
 
         #endregion
-
-
-
     }
 }

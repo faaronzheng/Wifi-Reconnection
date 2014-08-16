@@ -50,6 +50,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Crack.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Crack.Designer.cs">
+      <DependentUpon>Crack.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CrackPassword.cs" />
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -67,6 +74,9 @@
     <Compile Include="State.cs" />
     <Compile Include="XmlOP.cs" />
     <Compile Include="Wifi.cs" />
+    <EmbeddedResource Include="Crack.resx">
+      <DependentUpon>Crack.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>

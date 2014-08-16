@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="gb2312" standalone="yes"?>
 <setting>
   <basic timeout="10" authen="WPAPSK" encry="AES" />
-  <Tenda_4B8660 ssid="Tenda_4B8660" pswd="1213141516" />
-  <Connectify-HOME ssid="Connectify-HOME" pswd="jinweiwei" />
+  <Network ssid="Network" pswd="12131415161718" />
 </setting>
