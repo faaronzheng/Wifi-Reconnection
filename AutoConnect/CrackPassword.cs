@@ -41,7 +41,7 @@ namespace AutoConnect
                 {
                     for (int j = 0; j < 1000; j++)
                     {
-                        if (startNumber < Math.Pow(10, passwordNumber - 1))
+                        if (startNumber < Math.Pow(10, passwordNumber - 1))      //为密码补0
                         {
                             String str =(startNumber + j).ToString();
                             String addStr = null;
@@ -60,8 +60,8 @@ namespace AutoConnect
                         }                      
                     }
                     avaliable = false;
-                    i = i + 1000;
-                    startNumber = startNumber + 1000;
+                    i = i + 1000;                                          //记录已产生密码数
+                    startNumber = startNumber + 1000;                     //记录下一轮密码起始位置
                 }
                              
             }              
@@ -75,7 +75,7 @@ namespace AutoConnect
             wifi = new Wifi(SSID, null, authen, encry);
             while (true)
             {
-                if(!avaliable)
+                if(!avaliable)                                    //数组已满
                 {
                     for (int i = 0; i < 1000; i++)
                     {

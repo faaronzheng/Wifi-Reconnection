@@ -6,6 +6,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Xml;
 /*
  * version: 1.1
  * author: faaron
@@ -31,6 +32,7 @@ namespace AutoConnect
         public String pswd = null;
         private String authen = null;
         private String encry = null;
+        private Boolean isAdded = false;
 
         //检测网络状态
         [DllImport("wininet.dll", EntryPoint = "InternetGetConnectedState")]
@@ -107,7 +109,27 @@ namespace AutoConnect
                 //Console.ReadKey();  
                 Thread.Sleep(2000);
                 if (InternetGetConnectedState(out Desc, 0))       //有网络连接     
+                {
+                    XmlDocument doc = new XmlDocument();
+                    doc.Load("setting.xml");
+                    XmlNodeList nodeList = doc.SelectSingleNode("setting").ChildNodes;
+                    foreach (XmlNode xn in nodeList)
+                    {
+                        XmlElement xe = (XmlElement)xn;
+                        if (xe.GetAttribute("ssid").Equals(targetSSID.SSID))
+                        {
+                            isAdded = true;
+                        }
+                    }
+                    if (!isAdded)
+                    {
+                        XmlOP xml = new XmlOP();
+                        xml.addXml(targetSSID.SSID, pswd);
+                    }
                     return true;
+ 
+                }
+                   
             }
             catch (Exception err)
             {

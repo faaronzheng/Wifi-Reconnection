@@ -16,8 +16,7 @@ namespace AutoConnect
         public Boolean AutoConFlag = false;                          //是否进行重连标志 
         public bool timeout = false;                                 //是否超时标志
         int time = 0;
-        private Stopwatch sw = null;                                 //计时
-        private Boolean isAdded = false;
+        private Stopwatch sw = null;                                 //计时      
         private WIFISSID targetSSID=null;
         private String pswd=null;
         public Boolean connectResult = true;
@@ -45,24 +44,7 @@ namespace AutoConnect
             while (true)
             {
                 if (InternetGetConnectedState(out Desc, 0))       //有网络连接               
-                {               
-                        XmlDocument doc = new XmlDocument();
-                        doc.Load("setting.xml");
-                        XmlNodeList nodeList = doc.SelectSingleNode("setting").ChildNodes;
-                        foreach (XmlNode xn in nodeList)
-                        {
-                            XmlElement xe = (XmlElement)xn;
-                            if (xe.GetAttribute("ssid").Equals(targetSSID.SSID))
-                            {
-                                isAdded = true;
-                            }
-                        }
-                        if (!isAdded)
-                        {
-                            XmlOP xml = new XmlOP();
-                            xml.addXml(targetSSID.SSID, pswd);
-                        }
-                    
+                {                                                     
                     sw.Reset();                //重置时间
                     continue;
                 }
